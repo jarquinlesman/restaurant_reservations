@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('../img/R.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    margin: 0;
+    padding: 0;
+    background-color: #001D3D; 
+}
+.container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo blanco con 30% de opacidad */
+    backdrop-filter: blur(16px);
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.restaurant-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.restaurant-card {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con 90% de opacidad */
+    border: 2px solid #007BFF; /* Borde azul más grueso */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra más prominente */
+    overflow: hidden;
+    width: 300px;
+    margin: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.restaurant-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3); /* Sombra más intensa al pasar el ratón por encima */
+}
+
+.restaurant-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.restaurant-info {
+    padding: 20px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.restaurant-info h2 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.restaurant-info p {
+    color: #666;
+    margin: 5px 0;
+}
+
+.restaurant-info button {
+    background-color: #007BFF;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center; /* Alinea el botón al centro horizontalmente */
+}
+
+.restaurant-info button:hover {
+    background-color: #0056b3;
+}
+
+.restaurant-info button {
+    background-color: #007BFF;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+    align-self: center; /* Alinea los botones al centro */
+}
+
+.restaurant-info button:hover {
+    background-color: #0056b3;
+}
