@@ -12,46 +12,44 @@
         <div class="form-container">
             <div class="form-section">
                 <h1 id="form-title">Registrar Nuevo Restaurante</h1>
-                <form id="combined-form" action="combined_process.php" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" id="restaurant_id" name="restaurant_id" value="">
+                <form id="combined-form" action="../routes/signupRestaurant_route.php" method="POST" enctype="multipart/form-data">
 
                     <label for="name">Nombre del Restaurante:</label>
-                    <input type="text" id="name" name="name" maxlength="100">
+                    <input type="text" id="name" name="name" maxlength="100" required>
 
                     <label for="address">Dirección:</label>
-                    <input type="text" id="address" name="address" maxlength="200">
+                    <input type="text" id="address" name="address" maxlength="200" required>
 
                     <label for="phone">Teléfono:</label>
-                    <input type="text" id="phone" name="phone" oninput="validatePhone()">
+                    <input type="text" id="phone" name="phone" oninput="validatePhone()" required>
                     <span id="phone-error" style="color: rgb(255, 255, 255); display: none;">Caracteres inválidos. Solo se permiten números y guiones.</span>
 
+                    <label for="email">Correo:</label>
+                    <input type="text" id="email" name="email" maxlength="200" required>
+
                     <label for="image">Subir Imagen (máximo 1):</label>
-                    <input type="file" id="image" name="image" accept="image/*" onchange="previewImage()">
+                    <input type="file" id="image" name="image" accept="image/*" onchange="previewImage()" required>
 
                     <div class="image-container">
                         <div class="image-preview" id="image-preview"></div>
                     </div>
-                </form>
-            </div>
 
-            <div class="form-section form-section-mesas">
-                <h1 class="title-mesas">Cantidad de Mesas</h1>
-                <form id="tables-form" action="tables_process.php" method="POST">
+                    <h1 class="title-mesas">Cantidad de Mesas</h1>    
                     <div class="input-container-tables">
                         <label for="tables-2" class="label-tables">Mesas para 2 personas:</label>
-                        <input type="number" id="tables-2" class="input-tables" name="tables_2" min="0" value="0" oninput="updateTotalTables()">
+                        <input type="number" id="tables-2" class="input-tables" name="tables_2" min="0" value="0" oninput="updateTotalTables()" required>
                     </div>
                     <div class="input-container-tables">
                         <label for="tables-4" class="label-tables">Mesas para 4 personas:</label>
-                        <input type="number" id="tables-4" class="input-tables" name="tables_4" min="0" value="0" oninput="updateTotalTables()">
+                        <input type="number" id="tables-4" class="input-tables" name="tables_4" min="0" value="0" oninput="updateTotalTables()" required>
                     </div>
                     <div class="input-container-tables">
                         <label for="tables-6" class="label-tables">Mesas para 6 personas:</label>
-                        <input type="number" id="tables-6" class="input-tables" name="tables_6" min="0" value="0" oninput="updateTotalTables()">
+                        <input type="number" id="tables-6" class="input-tables" name="tables_6" min="0" value="0" oninput="updateTotalTables()" required>
                     </div>
                     <div class="input-container-tables">
                         <label for="tables-10" class="label-tables">Mesas para 10 personas:</label>
-                        <input type="number" id="tables-10" class="input-tables" name="tables_10" min="0" value="0" oninput="updateTotalTables()">
+                        <input type="number" id="tables-10" class="input-tables" name="tables_10" min="0" value="0" oninput="updateTotalTables()" required>
                     </div>
                     <div class="input-container-tables">
                         <label for="total-tables" class="label-tables">Cantidad de Mesas:</label>
@@ -59,8 +57,6 @@
                     </div>
 
                     <div class="button-container-mesas">
-                        <button type="button" id="edit-button" onclick="switchToEditMode()">Editar</button>
-                        <button type="button" id="register-button" onclick="switchToRegisterMode()">Registrar</button>
                         <button type="submit" id="save-button">Guardar</button>
                     </div>
                 </form>

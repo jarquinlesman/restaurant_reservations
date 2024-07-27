@@ -21,7 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($user['Pass']) && $pass == $user['Pass']) {
                 $_SESSION['user_id'] = $user['Id_User'];
                 $_SESSION['email'] = $user['Email'];
-                $_SESSION['name'] = $user['Name']; // Guarda el nombre en la sesión
+                $_SESSION['name'] = $user['Name'];
+                $_SESSION['phone'] = $user['Phone'];
+                $_SESSION['pass'] = $user['Pass'];
+                $_SESSION['role'] = $user['Id_Role'];
                 header("Location: ../views/restaurant.php"); // Cambia la ubicación según sea necesario
                 exit();
             } else {

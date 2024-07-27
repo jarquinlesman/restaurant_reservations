@@ -45,7 +45,7 @@
                 </form>
                 <div class="registrar">
                     <p>No tengo cuenta
-                        <a href="pantallas/signup.php">Crear una cuenta</a>
+                        <a href="views/signup.php">Crear una cuenta</a>
                     </p>
                 </div>
             </div>
