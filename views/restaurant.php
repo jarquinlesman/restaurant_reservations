@@ -30,16 +30,31 @@ $error = $restaurantsData['error'];
         <div class="container-navbar">
             <nav class="navbar">
                 <ul class="menu">
-                    <li class="active"><a href="#"><i class="fas fa-home"></i>Inicio</a></li>
+                    <li><a href="#" class="active"><i class="fas fa-home"></i>Inicio</a></li>
                     <li><a href="#"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
                 </ul>
                 <ul class="menu-right">
                     <li><a href="#"><i class="fas fa-user"></i> Mi Perfil</a></li>
-                    <li><a href="#" class="logout-btn">Salir</a></li>
+                    <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuItems = document.querySelectorAll('.menu li a, .menu-right li a');
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    // Eliminar la clase 'active' de todos los elementos
+                    menuItems.forEach(i => i.classList.remove('active'));
+
+                    // Añadir la clase 'active' al elemento clicado
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script> -->
 
     <div class="container">
         <h1>Nuestros Restaurantes</h1>

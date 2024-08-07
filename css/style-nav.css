@@ -1,4 +1,4 @@
-/* Estilos del navegador */
+/* Estilos del nav */
 .container-navbar {
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
@@ -45,24 +45,14 @@
 }
 
 .menu li a:hover, .menu-right li a:hover {
+    background-color: #8447e7dc;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Cambiar color del texto cuando está activo o seleccionado */
+.menu li a.active, .menu-right li a.active, .active a {
     background-color: #007BFF;
     color: #fff;
     border-radius: 5px;
-}
-
-.active a, .menu li a.active {
-    background-color: #007BFF;
-    color: #fff;
-    border-radius: 5px;
-}
-
-.logout-btn {
-    background-color: #FF4B4B;
-    color: #fff;
-    border-radius: 5px;
-    padding: 10px 15px;
-}
-
-.logout-btn:hover {
-    background-color: #FF0000;
 }

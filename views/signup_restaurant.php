@@ -4,36 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurante y Cantidad Mesas</title>
+    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script> 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles_signupRestaurant.css">
 </head>
 <body>
-    <div class="wrapper">
         <div class="form-container">
             <div class="form-section">
                 <h1 id="form-title">Registrar Nuevo Restaurante</h1>
                 <form id="combined-form" action="../routes/signupRestaurant_route.php" method="POST" enctype="multipart/form-data">
+                    
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-utensils"></i> <!-- icono restaurant -->
+                        <label for="name">Nombre del Restaurante:</label>
+                        <input type="text" id="name" name="name" maxlength="100" required>
+                    </div>
 
-                    <label for="name">Nombre del Restaurante:</label>
-                    <input type="text" id="name" name="name" maxlength="100" required>
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-map-marker-alt"></i>
+                        <label for="address">Dirección:</label>
+                        <input type="text" id="address" name="address" maxlength="200" required>
+                    </div>
 
-                    <label for="address">Dirección:</label>
-                    <input type="text" id="address" name="address" maxlength="200" required>
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-phone"></i> <!-- icono phone -->
+                        <label for="phone">Teléfono:</label>
+                        <input type="text" id="phone" name="phone" oninput="validatePhone()" required>
+                        <span id="phone-error" style="color: rgb(255, 255, 255); display: none;">Caracteres inválidos. Solo se permiten números y guiones.</span>
+                    </div>
 
-                    <label for="phone">Teléfono:</label>
-                    <input type="text" id="phone" name="phone" oninput="validatePhone()" required>
-                    <span id="phone-error" style="color: rgb(255, 255, 255); display: none;">Caracteres inválidos. Solo se permiten números y guiones.</span>
-
-                    <label for="email">Correo:</label>
-                    <input type="text" id="email" name="email" maxlength="200" required>
-
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-envelope"></i> <!-- icono email -->
+                        <label for="email">Correo:</label>
+                        <input type="text" id="email" name="email" maxlength="200" required>
+                    </div>
+                    
                     <label for="image">Subir Imagen (máximo 1):</label>
                     <input type="file" id="image" name="image" accept="image/*" onchange="previewImage()" required>
 
                     <div class="image-container">
                         <div class="image-preview" id="image-preview"></div>
                     </div>
-
+                    
+                <div class = "tables-container">
                     <h1 class="title-mesas">Cantidad de Mesas</h1>    
                     <div class="input-container-tables">
                         <label for="tables-2" class="label-tables">Mesas para 2 personas:</label>
@@ -55,14 +68,14 @@
                         <label for="total-tables" class="label-tables">Cantidad de Mesas:</label>
                         <input type="text" id="total-tables" class="input-tables" name="total_tables" readonly>
                     </div>
-
+                </div>
                     <div class="button-container-mesas">
                         <button type="submit" id="save-button">Guardar</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
+
 
     <script>
         function previewImage() {
