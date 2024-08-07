@@ -6,7 +6,9 @@ $name = isset($_GET['name']) ? $_GET['name'] : '';
 $location = isset($_GET['location']) ? $_GET['location'] : '';
 $phone = isset($_GET['phone']) ? $_GET['phone'] : '';
 $email = isset($_GET['email']) ? $_GET['email'] : '';
-$image = isset($_GET['image']) ? $_GET['image'] : '';
+
+// Obtener la imagen desde la sesión
+$image = isset($_SESSION['restaurant_image_' . $id_rest]) ? $_SESSION['restaurant_image_' . $id_rest] : '';
 
 // Obtener el nombre del usuario desde la sesión
 $user_name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
@@ -17,8 +19,6 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Redireccionamiento para usar el código de los iconos -->
-    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservación</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
@@ -34,9 +34,24 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
             return true;
         }
     </script>
-
 </head>
 <body>
+    <!-- Navegación -->
+    <header class="header">
+        <div class="container-navbar">
+            <nav class="navbar">
+                <ul class="menu">
+                    <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Reservaciones</a></li>
+                </ul>
+                <ul class="menu-right">
+                    <li><a href="#"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li><a href="#" class="logout-btn">Salir</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <section class="todo_reservar">
         <div class="contenedor_reservar"> 
             <div class="formulario">
@@ -47,7 +62,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
                         <input type="text" id="nombre_cliente" name="nombre_cliente" value="<?php echo htmlspecialchars($user_name); ?>" readonly>
                     </div>
                     <div class="campos_reservar">
-                        <label for="fecha_reservacion">Fecha de Reservación </label>
+                        <label for="fecha_reservacion">Fecha de Reservación</label>
                         <input type="date" id="fecha_reservacion" name="fecha_reservacion" required>
                     </div>
                     <div class="campos_reservar">
@@ -71,12 +86,11 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
         <div class="contenedor_reservar2"> 
             <div class="formulario">
                 <form action="#">
-                    <h2>Restaurante</h2>
                     <div class="campos_reservar2">
                         <label><?php echo htmlspecialchars($name); ?></label>
                     </div>
                     <div class="swiper-slide">
-                        <img src="<?php echo htmlspecialchars($image); ?>" alt="restaurante">
+                        <img src="data:image/jpeg;base64,<?php echo htmlspecialchars($image); ?>" alt="restaurante">
                     </div>
                     <div class="campos_reservar2 info">
                         <label>Detalles adicionales</label>

@@ -29,7 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Redirigir basado en el resultado
         if ($result) {
-            header('Location: success.php'); // Redirigir a una página de éxito
+            echo "<script>
+                alert('Restaurante registrado correctamente. Ahora se debe de registrar un administrador para el restaurante.');
+                window.location.href = '../views/signupAdminRestaurant.php';
+            </script>";
             exit;
         } else {
             echo "<script>alert('Hubo un problema al registrar el restaurante.'); history.back();</script>";
@@ -41,8 +44,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo "<script>alert('Método no permitido.'); history.back();</script>";
 }
-
-// Registro de datos para depuración
-error_log(print_r($_POST, true));
-error_log(print_r($_FILES, true));
 ?>
