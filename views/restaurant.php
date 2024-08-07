@@ -5,6 +5,8 @@ require_once '../routes/restaurant_route.php'; // Incluye la ruta que a su vez i
 $restaurantsData = getRestaurants(); // Llama a la función del controlador
 $restaurants = $restaurantsData['restaurants'];
 $error = $restaurantsData['error'];
+
+$showRegisterRestaurant = false; // Cambia esto según tu lógica de negocio
 ?>
 
 <!DOCTYPE html>
@@ -25,18 +27,21 @@ $error = $restaurantsData['error'];
     </script>
 </head>
 <body onload="showError('<?php echo htmlspecialchars($error); ?>')">
-     <!-- Navegación -->
-     <header class="header">
+    <!-- Navegación -->
+    <header class="header">
         <div class="container-navbar">
             <nav class="navbar">
                 <ul class="menu">
                     <li><a href="#" class="active"><i class="fas fa-home"></i>Inicio</a></li>
                     <li><a href="#"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
+                        <?php if ($showRegisterRestaurant): ?>
+                            <li><a href="#"><i class="fa-solid fa-circle-plus"></i>Registrar Restaurante</a></li>
+                        <?php endif; ?>
                 </ul>
                 <ul class="menu-right">
                     <li><a href="#"><i class="fas fa-user"></i> Mi Perfil</a></li>
                     <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
-                </ul>
+            </ul>
             </nav>
         </div>
     </header>
