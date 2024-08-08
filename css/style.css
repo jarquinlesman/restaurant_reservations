@@ -340,10 +340,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    background: url(imagenes/im4.jpg) no-repeat;
+    background: url(../img/mi_perfil.jpg) no-repeat;
     background-position: center;
     background-size: cover;
 }
+
 
 /* Media Queries */
 @media (max-width: 768px) {

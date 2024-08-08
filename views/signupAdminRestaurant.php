@@ -1,8 +1,16 @@
 <?php
+require '../db/auth.php';
+checkLogin();
+
 require '../controllers/singupAdminRestaurant_controller.php';
 
 $ultimoRestaurante = obtenerUltimoRestaurante();
 $errorMensaje = "";
+
+$showRegisterRestaurant = false;
+if (isset($_SESSION['showRegisterRestaurant']) && $_SESSION['showRegisterRestaurant'] === true) {
+    $showRegisterRestaurant = true; // Cambiar a verdadero si es el super administrador
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +25,31 @@ $errorMensaje = "";
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+    <!-- Navegación -->
+    <header class="header">
+        <div class="container-navbar">
+        <nav class="navbar">
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="menu">
+                    <li><a href="../views/restaurant.php"><i class="fas fa-home"></i>Inicio</a></li>
+                    <?php if (!$showRegisterRestaurant): ?>
+                        <li><a href="../views/historialReservas.php"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
+                    <?php endif; ?>
+                        <?php if ($showRegisterRestaurant): ?>
+                            <li><a href="../views/signup_restaurant.php" class="active"><i class="fa-solid fa-circle-plus"></i>Registrar Restaurante</a></li>
+                        <?php endif; ?>
+                </ul>
+                <ul class="menu-right">
+                    <li><a href="../views/mi_perfil.php"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li><a href="../db/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <section class="todo_reg">
         <div class="contenedor_reg"> 
             <div class="formulario">
@@ -65,5 +98,6 @@ $errorMensaje = "";
             </div>
         </div>
     </section>
+    <script src="../javascript/script-nav.js"></script>
 </body>
 </html>

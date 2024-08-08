@@ -1,4 +1,5 @@
 <?php
+
 require_once '../db/db.php';
 
 function obtenerReservaciones($user_id) {

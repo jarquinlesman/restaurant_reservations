@@ -1,5 +1,11 @@
 <?php
-$showRegisterRestaurant = true; // Cambia esto según tu lógica de negocio
+require '../db/auth.php';
+checkLogin();
+
+$showRegisterRestaurant = false;
+if (isset($_SESSION['showRegisterRestaurant']) && $_SESSION['showRegisterRestaurant'] === true) {
+    $showRegisterRestaurant = true; // Cambiar a verdadero si es el super administrador
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,18 +25,25 @@ $showRegisterRestaurant = true; // Cambia esto según tu lógica de negocio
     <!-- Navegación -->
     <header class="header">
         <div class="container-navbar">
-            <nav class="navbar">
+        <nav class="navbar">
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
                 <ul class="menu">
-                    <li><a href="#" class="active"><i class="fas fa-home"></i>Inicio</a></li>
-                    <li><a href="#"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
+                    <li><a href="../views/restaurant.php"><i class="fas fa-home"></i>Inicio</a></li>
+                    <?php if (!$showRegisterRestaurant): ?>
+                        <li><a href="../views/historialReservas.php"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
+                    <?php endif; ?>
                         <?php if ($showRegisterRestaurant): ?>
-                            <li><a href="../views/signup_restaurant.php"><i class="fa-solid fa-circle-plus"></i>Registrar Restaurante</a></li>
+                            <li><a href="../views/signup_restaurant.php" class="active"><i class="fa-solid fa-circle-plus"></i>Registrar Restaurante</a></li>
                         <?php endif; ?>
                 </ul>
                 <ul class="menu-right">
-                    <li><a href="#"><i class="fas fa-user"></i> Mi Perfil</a></li>
-                    <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
-            </ul>
+                    <li><a href="../views/mi_perfil.php"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li><a href="../db/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
+                </ul>
             </nav>
         </div>
     </header>
@@ -161,5 +174,7 @@ $showRegisterRestaurant = true; // Cambia esto según tu lógica de negocio
             document.getElementById('combined-form').reset();
         }
     </script>
+    <script src="../javascript/script-nav.js"></script>
+
 </body>
 </html>

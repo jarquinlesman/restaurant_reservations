@@ -26,31 +26,118 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['pass'] = $user['Pass'];
                 $_SESSION['role'] = $user['Id_Role'];
 
-                 // Validación del rol del usuario
-                 if ($user['Id_Role'] == 1) {
+                // Validación del rol del usuario
+                if ($user['Id_Role'] == 1) {
                     $_SESSION['showRegisterRestaurant'] = true; // Para el Super Administrador
-                    header("Location: ../views/restaurant.php"); // Redirigir al Super Administrador
+                    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Inicio de sesión exitoso',
+                                text: 'Redirigiendo al panel del Super Administrador...',
+                                timer: 2000,
+                                timerProgressBar: true
+                            }).then(() => {
+                                window.location.href = '../views/restaurant.php';
+                            });
+                        });
+                    </script>";
                 } elseif ($user['Id_Role'] == 2) {
                     $_SESSION['showRegisterRestaurant'] = false; // Para el Administrador
-                    header("Location: ../views/signup_restaurant.php"); // Redirigir al Administrador
+                    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Inicio de sesión exitoso',
+                                text: 'Redirigiendo a la página de Reservas...',
+                                timer: 2000,
+                                timerProgressBar: true
+                            }).then(() => {
+                                window.location.href = '../views/reservasAdmin.php';
+                            });
+                        });
+                    </script>";
                 } elseif ($user['Id_Role'] == 3) {
                     $_SESSION['showRegisterRestaurant'] = false; // Para el Usuario normal
-                    header("Location: ../views/restaurant.php"); // Redirigir al Usuario normal
+                    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Inicio de sesión exitoso',
+                                text: 'Redirigiendo a la página principal...',
+                                timer: 2000,
+                                timerProgressBar: true
+                            }).then(() => {
+                                window.location.href = '../views/restaurant.php';
+                            });
+                        });
+                    </script>";
                 } else {
-                    echo "<script>alert('Rol de usuario no válido.'); history.back();</script>";
+                    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Rol de usuario no válido',
+                                text: 'Por favor, contacta al administrador.',
+                                confirmButtonText: 'Aceptar'
+                            }).then(() => {
+                                history.back();
+                            });
+                        });
+                    </script>";
                     exit();
                 }
                 
             } else {
-                echo "<script>alert('Contraseña inválida.'); history.back();</script>";
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Contraseña inválida',
+                            text: 'La contraseña que has ingresado es incorrecta.',
+                            confirmButtonText: 'Aceptar'
+                        }).then(() => {
+                            history.back();
+                        });
+                    });
+                </script>";
                 exit();
             }
         } else {
-            echo "<script>alert('No se encontró ningún usuario con ese correo.'); history.back();</script>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Correo no encontrado',
+                        text: 'No se encontró ningún usuario con ese correo electrónico.',
+                        confirmButtonText: 'Aceptar'
+                    }).then(() => {
+                        history.back();
+                    });
+                });
+            </script>";
             exit();
         }
     } else {
-        echo "<script>alert('Por favor complete todos los campos.'); history.back();</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Campos incompletos',
+                    text: 'Por favor complete todos los campos.',
+                    confirmButtonText: 'Aceptar'
+                }).then(() => {
+                    history.back();
+                });
+            });
+        </script>";
         exit();
     }
 }

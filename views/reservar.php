@@ -1,5 +1,7 @@
 <?php
-session_start();
+require '../db/auth.php';
+checkLogin();
+
 // Obtener los datos del restaurante desde la URL
 $id_rest = isset($_GET['id']) ? $_GET['id'] : '';
 $name = isset($_GET['name']) ? $_GET['name'] : '';
@@ -22,15 +24,26 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservación</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style-nav.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         function validateForm() {
             const numeroPersonas = document.getElementById('numero_personas');
+            const horaReservacion = document.getElementById('hora_reservacion').value;
             const value = parseInt(numeroPersonas.value, 10);
             if (value < 1 || value > 10) {
-                alert('El número de personas debe estar entre 1 y 10.');
+                alert('El número de personas debe estar entre 1 y 10. Si la reserva es para más de 10 personas, contactarse con el restaurante');
                 return false;
             }
+
+            // Validación de la hora exacta
+        const [hours, minutes] = horaReservacion.split(':').map(Number);
+            if (minutes !== 0) {
+                alert('Solo se aceptan horas exactas. Ejemplo: 08:00, 09:00, etc.');
+        return false;
+    }
             return true;
         }
     </script>
@@ -38,23 +51,23 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
 <body>
     <!-- Navegación -->
     <header class="header">
-        <div class="container-navbar">
-            <nav class="navbar">
-                <div class="menu-toggle" id="mobile-menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-                <ul class="menu">
-                    <li><a href="../views/restaurant.php" class="active"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="../views/historialReservas.php"><i class="fas fa-calendar-alt"></i> Reservaciones</a></li>
-                </ul>
-                <ul class="menu-right">
-                    <li><a href=""><i class="fas fa-user"></i> Mi Perfil</a></li>
-                    <li><a href="#" class="logout-btn">Salir</a></li>
-                </ul>
-            </nav>
-        </div>
+    <div class="container-navbar">
+        <nav class="navbar">
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="menu">
+                <li><a href="../views/restaurant.php" class="active"><i class="fas fa-home"></i>Inicio</a></li>
+                <li><a href="../views/historialReservas.php"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
+            </ul>
+            <ul class="menu-right">
+                <li><a href="../views/mi_perfil.php"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                <li><a href="../db/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
+            </ul>
+        </nav>
+    </div>
     </header>
 
     <section class="todo_reservar">
@@ -72,7 +85,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
                     </div>
                     <div class="campos_reservar">
                         <label for="hora_reservacion">Hora de Reservación</label>
-                        <input type="time" id="hora_reservacion" name="hora_reservacion" required>
+                        <input type="time" id="hora_reservacion" name="hora_reservacion" min="08:00" max="20:00" step="3600" required>
                     </div>
                     <div class="input-contenedor">
                         <label for="numero_personas">Número de Personas</label>
@@ -115,5 +128,30 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
         </div>
     </section>
     <script src="../javascript/script-nav.js"></script>
+
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('path/to/reservation_route.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire('Éxito', data.message, 'success');
+                } else {
+                    Swal.fire('Error', data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire('Error', 'Hubo un problema con la solicitud.', 'error');
+            });
+        });
+    </script>
 </body>
 </html>

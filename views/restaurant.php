@@ -1,5 +1,7 @@
 <?php
-session_start();
+require '../db/auth.php';
+checkLogin();
+
 require_once '../routes/restaurant_route.php'; // Incluye la ruta que a su vez incluye el controlador
 
 $restaurantsData = getRestaurants(); // Llama a la función del controlador
@@ -40,15 +42,17 @@ if (isset($_SESSION['showRegisterRestaurant']) && $_SESSION['showRegisterRestaur
                     <span class="bar"></span>
                 </div>
                 <ul class="menu">
-                    <li><a href="#" class="active"><i class="fas fa-home"></i>Inicio</a></li>
-                    <li><a href="../views/reservasAdmin.php"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
+                    <li><a href="../views/restaurant.php" class="active"><i class="fas fa-home"></i>Inicio</a></li>
+                    <?php if (!$showRegisterRestaurant): ?>
+                        <li><a href="../views/historialReservas.php"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
+                    <?php endif; ?>
                         <?php if ($showRegisterRestaurant): ?>
                             <li><a href="../views/signup_restaurant.php"><i class="fa-solid fa-circle-plus"></i>Registrar Restaurante</a></li>
                         <?php endif; ?>
                 </ul>
                 <ul class="menu-right">
-                    <li><a href="#"><i class="fas fa-user"></i> Mi Perfil</a></li>
-                    <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
+                    <li><a href="../views/mi_perfil.php"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li><a href="../db/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
             </ul>
             </nav>
         </div>
@@ -90,7 +94,8 @@ if (isset($_SESSION['showRegisterRestaurant']) && $_SESSION['showRegisterRestaur
                             
                             <?php if ($showRegisterRestaurant): ?>
                                 <!-- Botón Editar para super administrador -->
-                                <form action="signup_restaurant.php" method="GET">
+                                <form action="editarRestaurant.php" method="GET">
+                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($restaurant['Id_Rest']); ?>">
                                     <button type="submit">Editar</button>
                                 </form>
                             <?php else: ?>
@@ -110,5 +115,6 @@ if (isset($_SESSION['showRegisterRestaurant']) && $_SESSION['showRegisterRestaur
             <?php endif; ?>
         </div>
     </div>
+    <script src="../javascript/script-nav.js"></script>
 </body>
 </html>

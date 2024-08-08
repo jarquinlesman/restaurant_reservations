@@ -1,3 +1,8 @@
+<?php
+require '../db/auth.php';
+checkLogin();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,12 +25,12 @@
                 <span class="bar"></span>
             </div>
             <ul class="menu">
-                <li><a href="#"><i class="fas fa-home"></i>Inicio</a></li>
-                <li><a href="#" class="active"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
+                <li><a href="../views/restaurant.php"><i class="fas fa-home"></i>Inicio</a></li>
+                <li><a href="../views/historialReservas.php" class="active"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
             </ul>
             <ul class="menu-right">
-                <li><a href="#"><i class="fas fa-user"></i> Mi Perfil</a></li>
-                <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
+                <li><a href="../views/mi_perfil.php"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                <li><a href="../db/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
             </ul>
         </nav>
     </div>
