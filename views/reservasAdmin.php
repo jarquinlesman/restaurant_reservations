@@ -13,6 +13,9 @@ checkLogin();
     <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">  
     <link rel="stylesheet" href="../css/styleHistorialReservacion.css">
     <link rel="stylesheet" href="../css/style-nav.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
 </head>
 <body>
 

@@ -39,8 +39,8 @@ $(document).ready(function () {
 
         if (showButtons) {
             buttons = `
-                <button class="btn botonConfi" data-id="${reservacion.Id_Reservation}">Confirmar</button>
-                <button class="btn botonCance" data-id="${reservacion.Id_Reservation}">Cancelar</button>`;
+                <button class="btn botonConfi" data-id="${reservacion.Id_Reservation}" data-email="${reservacion.Email}">Confirmar</button>
+                <button class="btn botonCance" data-id="${reservacion.Id_Reservation}" data-email="${reservacion.Email}">Cancelar</button>`;
         }
 
         return `
@@ -64,25 +64,53 @@ $(document).ready(function () {
             </div>`;
     }
 
+
     $('body').on('click', '.botonConfi', function() {
         var id = $(this).data('id');
-        updateReservationState(id, 2);
-        //alert('Reservación Confirmada Exitosamente', )
+        var email = $(this).data('email');
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Confirmarás esta reservación",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, confirmar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                updateReservationState(id, 2);
+            }
+        });
     });
 
     $('body').on('click', '.botonCance', function() {
         var id = $(this).data('id');
-        updateReservationState(id, 3);
-        
+        var email = $(this).data('email');
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Cancelarás esta reservación",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                updateReservationState(id, 3);
+            }
+        });
     });
 
-    function updateReservationState(id, state) {
+
+    function updateReservationState(id, state, email, action) {
         $.ajax({
             url: '../routes/reservasAdmin_route.php',
             method: 'POST',
             data: {
                 id_res: id,
-                state: state
+                state: state,
+                email: email,
+                action: action
             },
             dataType: 'json',
             success: function(response) {

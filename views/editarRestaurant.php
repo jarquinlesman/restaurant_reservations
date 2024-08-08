@@ -29,14 +29,15 @@ $error = $data['error'];
         <div class="container-navbar">
             <nav class="navbar">
                 <ul class="menu">
-                    <li><a href="#" class="active"><i class="fas fa-home"></i>Inicio</a></li>
+                <li><a href="../views/restaurant.php"><i class="fas fa-home"></i>Inicio</a></li>
                     <?php if ($showRegisterRestaurant): ?>
                         <li><a href="../views/signup_restaurant.php"><i class="fa-solid fa-circle-plus"></i>Registrar Restaurante</a></li>
+                        <li><a href="../views/editarRestaurant.php" class="active"><i class="fa-solid fa-pen-to-square"></i>Editar Restaurante</a></li>
                     <?php endif; ?>
                 </ul>
                 <ul class="menu-right">
-                    <li><a href="#"><i class="fas fa-user"></i> Mi Perfil</a></li>
-                    <li><a href="#"><i class="fas fa-solid fa-right-from-bracket"></i> Salir</a></li>
+                    <li><a href="../views/mi_perfil.php"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li><a href="../db/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
                 </ul>
             </nav>
         </div>

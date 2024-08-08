@@ -98,7 +98,4 @@ function updateAdminData($idAdmin, $name, $phone, $email, $password) {
     $stmt->bind_param('ssssi', $name, $phone, $email, $password, $idAdmin);
     return $stmt->execute();
 }
-
-
 ?>
-

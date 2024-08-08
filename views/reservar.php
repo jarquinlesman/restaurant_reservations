@@ -27,6 +27,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
     <link rel="stylesheet" type="text/css" href="../css/style-nav.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
 
     <script>
         function validateForm() {
