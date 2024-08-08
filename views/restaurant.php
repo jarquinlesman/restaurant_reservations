@@ -6,7 +6,7 @@ $restaurantsData = getRestaurants(); // Llama a la función del controlador
 $restaurants = $restaurantsData['restaurants'];
 $error = $restaurantsData['error'];
 
-$showRegisterRestaurant = false; // Cambia esto según tu lógica de negocio
+$showRegisterRestaurant = true; // Cambia esto según tu lógica de negocio
 ?>
 
 <!DOCTYPE html>
@@ -31,11 +31,16 @@ $showRegisterRestaurant = false; // Cambia esto según tu lógica de negocio
     <header class="header">
         <div class="container-navbar">
             <nav class="navbar">
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
                 <ul class="menu">
                     <li><a href="#" class="active"><i class="fas fa-home"></i>Inicio</a></li>
-                    <li><a href="#"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
+                    <li><a href="../views/reservasAdmin.php"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
                         <?php if ($showRegisterRestaurant): ?>
-                            <li><a href="#"><i class="fa-solid fa-circle-plus"></i>Registrar Restaurante</a></li>
+                            <li><a href="../views/signup_restaurant.php"><i class="fa-solid fa-circle-plus"></i>Registrar Restaurante</a></li>
                         <?php endif; ?>
                 </ul>
                 <ul class="menu-right">

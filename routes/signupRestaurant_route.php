@@ -18,7 +18,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Validar los datos
     if (empty($name) || empty($address) || empty($phone) || empty($email)) {
-        echo "<script>alert('Por favor complete todos los campos.'); history.back();</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      Swal.fire({
+                          icon: 'error',
+                          title: '¡Error!',
+                          text: 'Por favor complete todos los campos.',
+                          confirmButtonText: 'Aceptar'
+                      }).then(() => {
+                          history.back();
+                      });
+                  });
+              </script>";
         exit;
     }
 
@@ -29,19 +41,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Redirigir basado en el resultado
         if ($result) {
-            echo "<script>
-                alert('Restaurante registrado correctamente. Ahora se debe de registrar un administrador para el restaurante.');
-                window.location.href = '../views/signupAdminRestaurant.php';
-            </script>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                  <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                          Swal.fire({
+                              icon: 'success',
+                              title: 'Éxito',
+                              text: 'Restaurante registrado correctamente. Ahora se debe de registrar un administrador para el restaurante.',
+                              confirmButtonText: 'Aceptar'
+                          }).then(() => {
+                              window.location.href = '../views/signupAdminRestaurant.php';
+                          });
+                      });
+                  </script>";
             exit;
         } else {
-            echo "<script>alert('Hubo un problema al registrar el restaurante.'); history.back();</script>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                  <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                          Swal.fire({
+                              icon: 'error',
+                              title: '¡Error!',
+                              text: 'Hubo un problema al registrar el restaurante.',
+                              confirmButtonText: 'Aceptar'
+                          }).then(() => {
+                              history.back();
+                          });
+                      });
+                  </script>";
         }
     } else {
         // Error en la carga del archivo
-        echo "<script>alert('Error en la carga del archivo de imagen.'); history.back();</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      Swal.fire({
+                          icon: 'error',
+                          title: '¡Error!',
+                          text: 'Error en la carga del archivo de imagen.',
+                          confirmButtonText: 'Aceptar'
+                      }).then(() => {
+                          history.back();
+                      });
+                  });
+              </script>";
     }
 } else {
-    echo "<script>alert('Método no permitido.'); history.back();</script>";
+    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+          <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                  Swal.fire({
+                      icon: 'error',
+                      title: 'Método no permitido',
+                      text: 'Método no permitido.',
+                      confirmButtonText: 'Aceptar'
+                  }).then(() => {
+                      history.back();
+                  });
+              });
+          </script>";
 }
 ?>

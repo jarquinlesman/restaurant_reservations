@@ -17,6 +17,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+   
 }
 
 .menu, .menu-right {
@@ -38,8 +39,10 @@
     transition: background-color 0.3s, color 0.3s;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
+/* Agregar un espacio en el borde del contenedor para el menÃº desplegado */
 .menu li a i, .menu-right li a i {
     margin-right: 8px;
 }
@@ -50,9 +53,57 @@
     border-radius: 5px;
 }
 
-/* Cambiar color del texto cuando está activo o seleccionado */
+/* Cambiar color del texto cuando estÃ¡ activo o seleccionado */
 .menu li a.active, .menu-right li a.active, .active a {
     background-color: #007BFF;
     color: #fff;
     border-radius: 5px;
+}
+
+/* Estilos para el menÃº mÃ³vil */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: #000;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+/* Ocultar menÃºs en dispositivos pequeÃ±os */
+@media (max-width: 1200px) {
+    .menu, .menu-right {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    .menu-toggle {
+        display: flex;
+        margin-left: auto;
+    }
+
+    .menu li, .menu-right li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .menu.active, .menu-right.active {
+        display: flex;
+    }
+
+    /* AsegÃºrate de que el texto del menÃº estÃ© centrado en la vista mÃ³vil */
+    .menu li a, .menu-right li a {
+        text-align: center;
+        width: 100%;
+    }
 }

@@ -9,12 +9,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pass = $_POST['Pass'];
 
         if (insertClient($name, $phone, $email, $pass)) {
-            echo "<script>alert('Registro exitoso.'); window.location='../index.php';</script>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                  <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                          Swal.fire({
+                              icon: 'success',
+                              title: 'Éxito',
+                              text: 'Registro exitoso.',
+                              confirmButtonText: 'Aceptar'
+                          }).then(() => {
+                              window.location.href = '../index.php';
+                          });
+                      });
+                  </script>";
         } else {
-            echo "<script>alert('Error al registrar. Por favor, inténtelo de nuevo.'); history.back();</script>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                  <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                          Swal.fire({
+                              icon: 'error',
+                              title: '¡Error!',
+                              text: 'Error al registrar. Por favor, inténtelo de nuevo.',
+                              confirmButtonText: 'Aceptar'
+                          }).then(() => {
+                              history.back();
+                          });
+                      });
+                  </script>";
         }
     } else {
-        echo "<script>alert('Por favor complete todos los campos.'); history.back();</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      Swal.fire({
+                          icon: 'error',
+                          title: '¡Error!',
+                          text: 'Por favor complete todos los campos.',
+                          confirmButtonText: 'Aceptar'
+                      }).then(() => {
+                          history.back();
+                      });
+                  });
+              </script>";
     }
 }
 ?>

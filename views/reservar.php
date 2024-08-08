@@ -40,12 +40,17 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
     <header class="header">
         <div class="container-navbar">
             <nav class="navbar">
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
                 <ul class="menu">
-                    <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Reservaciones</a></li>
+                    <li><a href="../views/restaurant.php" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="../views/historialReservas.php"><i class="fas fa-calendar-alt"></i> Reservaciones</a></li>
                 </ul>
                 <ul class="menu-right">
-                    <li><a href="#"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li><a href=""><i class="fas fa-user"></i> Mi Perfil</a></li>
                     <li><a href="#" class="logout-btn">Salir</a></li>
                 </ul>
             </nav>
@@ -87,20 +92,28 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
             <div class="formulario">
                 <form action="#">
                     <div class="campos_reservar2">
-                        <label><?php echo htmlspecialchars($name); ?></label>
+                        <div class="encabezado">
+                         <h3><?php echo htmlspecialchars($name); ?></h3>
+                        </div>
                     </div>
                     <div class="swiper-slide">
                         <img src="data:image/jpeg;base64,<?php echo htmlspecialchars($image); ?>" alt="restaurante">
                     </div>
-                    <div class="campos_reservar2 info">
-                        <label>Detalles adicionales</label>
-                        <p><b>Dirección:</b> <?php echo htmlspecialchars($location); ?></p>
-                        <p><b>Teléfono:</b> <?php echo htmlspecialchars($phone); ?></p>
-                        <p><b>Email:</b> <?php echo htmlspecialchars($email); ?></p>
+                    <div class="campos_reservar2">
+                        <div class="encabezado">
+                            <h3>Detalles adicionales</h3>
+                        </div>
+
+                        <div class="info">
+                            <p><b>Dirección:</b> <?php echo htmlspecialchars($location); ?></p>
+                            <p><b>Teléfono:</b> <?php echo htmlspecialchars($phone); ?></p>
+                            <p><b>Email:</b> <?php echo htmlspecialchars($email); ?></p>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </section>
+    <script src="../javascript/script-nav.js"></script>
 </body>
 </html>

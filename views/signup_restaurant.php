@@ -1,3 +1,7 @@
+<?php
+$showRegisterRestaurant = true; // Cambia esto según tu lógica de negocio
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,8 +11,30 @@
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script> 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles_signupRestaurant.css">
+    <link rel="stylesheet" href="../css/style-nav.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+    <!-- Navegación -->
+    <header class="header">
+        <div class="container-navbar">
+            <nav class="navbar">
+                <ul class="menu">
+                    <li><a href="#" class="active"><i class="fas fa-home"></i>Inicio</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
+                        <?php if ($showRegisterRestaurant): ?>
+                            <li><a href="../views/signup_restaurant.php"><i class="fa-solid fa-circle-plus"></i>Registrar Restaurante</a></li>
+                        <?php endif; ?>
+                </ul>
+                <ul class="menu-right">
+                    <li><a href="#"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
+            </ul>
+            </nav>
+        </div>
+    </header>
+    <section>
         <div class="form-container">
             <div class="form-section">
                 <h1 id="form-title">Registrar Nuevo Restaurante</h1>
@@ -75,6 +101,7 @@
                 </form>
             </div>
         </div>
+    </section>
 
 
     <script>
