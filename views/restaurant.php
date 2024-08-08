@@ -6,7 +6,10 @@ $restaurantsData = getRestaurants(); // Llama a la función del controlador
 $restaurants = $restaurantsData['restaurants'];
 $error = $restaurantsData['error'];
 
-$showRegisterRestaurant = true; // Cambia esto según tu lógica de negocio
+$showRegisterRestaurant = false;
+if (isset($_SESSION['showRegisterRestaurant']) && $_SESSION['showRegisterRestaurant'] === true) {
+    $showRegisterRestaurant = true; // Cambiar a verdadero si es el super administrador
+}
 ?>
 
 <!DOCTYPE html>
@@ -84,14 +87,23 @@ $showRegisterRestaurant = true; // Cambia esto según tu lógica de negocio
                             <p>Dirección: <?php echo htmlspecialchars($restaurant['Location']); ?></p>
                             <p>Teléfono: <?php echo htmlspecialchars($restaurant['Phone']); ?></p>
                             <p>Email: <?php echo htmlspecialchars($restaurant['Email']); ?></p>
-                            <form action="reservar.php" method="GET">
-                                <input type="hidden" name="id" value="<?php echo htmlspecialchars($restaurant['Id_Rest']); ?>">
-                                <input type="hidden" name="name" value="<?php echo htmlspecialchars($restaurant['Name']); ?>">
-                                <input type="hidden" name="location" value="<?php echo htmlspecialchars($restaurant['Location']); ?>">
-                                <input type="hidden" name="phone" value="<?php echo htmlspecialchars($restaurant['Phone']); ?>">
-                                <input type="hidden" name="email" value="<?php echo htmlspecialchars($restaurant['Email']); ?>">
-                                <button type="submit">Reservar</button>
-                            </form>
+                            
+                            <?php if ($showRegisterRestaurant): ?>
+                                <!-- Botón Editar para super administrador -->
+                                <form action="signup_restaurant.php" method="GET">
+                                    <button type="submit">Editar</button>
+                                </form>
+                            <?php else: ?>
+                                <!-- Botón Reservar para otros usuarios -->
+                                <form action="reservar.php" method="GET">
+                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($restaurant['Id_Rest']); ?>">
+                                    <input type="hidden" name="name" value="<?php echo htmlspecialchars($restaurant['Name']); ?>">
+                                    <input type="hidden" name="location" value="<?php echo htmlspecialchars($restaurant['Location']); ?>">
+                                    <input type="hidden" name="phone" value="<?php echo htmlspecialchars($restaurant['Phone']); ?>">
+                                    <input type="hidden" name="email" value="<?php echo htmlspecialchars($restaurant['Email']); ?>">
+                                    <button type="submit">Reservar</button>
+                                </form>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>

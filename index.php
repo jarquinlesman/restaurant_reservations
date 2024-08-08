@@ -37,7 +37,7 @@
                     <div class="olvidar">
                         <label for="#">
                             <input type="checkbox"> Recordatorio 
-                            <a href="#">¿Olvidó su contraseña?</a>
+                            <a href="views/recuperarcontraseña.php">¿Olvidó su contraseña?</a>
                         </label>
                     </div>
                     
