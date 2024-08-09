@@ -129,19 +129,73 @@ button:hover{
     background-position: center;
     background-size: cover;
 }
-.contenedor_reg{
+
+.contenedor_reg {
     position: relative;
     width: 430px;
+    max-height: 550px; 
     border: 2px solid rgba(255, 255, 255, 0.6);
     border-radius: 20px;
     backdrop-filter: blur(16px);
-    height: 550px;
+    overflow-y: auto; 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start; 
     align-items: center;
     padding: 20px;
-    box-sizing: border-box;
 }
+
+/* Estilos para el combobox (select) */
+.transparent-select {
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    color: #ffffff; /* Color del texto */
+    appearance: none; /* Eliminar el estilo predeterminado del navegador */
+    padding: 0 10px; /* Espaciado interno */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    font-size: 1.0rem; /* Aumentar el tamaño de la fuente después de la selección */
+}
+
+/* Estilo para el contenedor del select */
+.input-contenedor {
+    position: relative;
+    margin: 30px 0;
+    width: 100%;
+}
+
+/* Agregar un icono para el select */
+.input-contenedor i.select-icon {
+    position: absolute;
+    color: #ffffff;
+    font-size: 1.6rem;
+    top: 15px; /* Ajustar la posición vertical del icono */
+    right: 10px; /* Ajustar la posición horizontal del icono */
+}
+
+.transparent-select option {
+    background-color: #1a1a1a; /* Fondo oscuro para las opciones */
+    color: #ffffff; /* Color del texto */
+}
+
+/* Cambiar el color del texto de las opciones al pasar el ratón */
+.transparent-select option:hover {
+    background-color: #333333; /* Fondo gris claro al pasar el ratón */
+}
+
+/* Estilos para mejorar el enfoque en el select */
+.transparent-select:focus {
+    outline: none; /* Sin contorno */
+    border-bottom: 1px solid #ffffff; /* Línea inferior blanca al enfocarse */
+}
+
+
+button {
+    margin: 0 0 10px 0; /* Margen inferior de 10px */
+    /* Otros estilos existentes */
+}
+
 .contenedor_reg h2{
     font-size: 2.3rem;
     color: #ffffff;

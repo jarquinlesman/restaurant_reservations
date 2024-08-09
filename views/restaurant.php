@@ -21,6 +21,8 @@ if (isset($_SESSION['showRegisterRestaurant']) && $_SESSION['showRegisterRestaur
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestros Restaurantes</title>
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../css/style-restaurant.css">
     <link rel="stylesheet" href="../css/style-nav.css">
     <script>
@@ -46,32 +48,17 @@ if (isset($_SESSION['showRegisterRestaurant']) && $_SESSION['showRegisterRestaur
                     <?php if (!$showRegisterRestaurant): ?>
                         <li><a href="../views/historialReservas.php"><i class="fas fa-calendar-alt"></i>Reservaciones</a></li>
                     <?php endif; ?>
-                        <?php if ($showRegisterRestaurant): ?>
-                            <li><a href="../views/signup_restaurant.php"><i class="fa-solid fa-circle-plus"></i>Registrar Restaurante</a></li>
-                        <?php endif; ?>
+                    <?php if ($showRegisterRestaurant): ?>
+                        <li><a href="../views/signup_restaurant.php"><i class="fa-solid fa-circle-plus"></i>Registrar Restaurante</a></li>
+                    <?php endif; ?>
                 </ul>
                 <ul class="menu-right">
                     <li><a href="../views/mi_perfil.php"><i class="fas fa-user"></i> Mi Perfil</a></li>
                     <li><a href="../db/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Salir</a></li>
-            </ul>
+                </ul>
             </nav>
         </div>
     </header>
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuItems = document.querySelectorAll('.menu li a, .menu-right li a');
-
-            menuItems.forEach(item => {
-                item.addEventListener('click', function () {
-                    // Eliminar la clase 'active' de todos los elementos
-                    menuItems.forEach(i => i.classList.remove('active'));
-
-                    // Añadir la clase 'active' al elemento clicado
-                    this.classList.add('active');
-                });
-            });
-        });
-    </script> -->
 
     <div class="container">
         <h1>Nuestros Restaurantes</h1>
@@ -93,10 +80,16 @@ if (isset($_SESSION['showRegisterRestaurant']) && $_SESSION['showRegisterRestaur
                             <p>Email: <?php echo htmlspecialchars($restaurant['Email']); ?></p>
                             
                             <?php if ($showRegisterRestaurant): ?>
+                                <!-- Botón Editar Administrador -->
+                                <form action="editarAdmin.php" method="GET">
+                                    <input type="hidden" name="Id_Rest" value="<?php echo htmlspecialchars($restaurant['Id_Rest']); ?>">
+                                    <button type="submit">Editar Administrador</button>
+                                </form>
+
                                 <!-- Botón Editar para super administrador -->
                                 <form action="editarRestaurant.php" method="GET">
                                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($restaurant['Id_Rest']); ?>">
-                                    <button type="submit">Editar</button>
+                                    <button type="submit">Editar Restaurante</button>
                                 </form>
                             <?php else: ?>
                                 <!-- Botón Reservar para otros usuarios -->

@@ -1,0 +1,11 @@
+controllers/registerAdmin_controller.php
+controllers/updateRestaurant_controller.php
+
+routes/getAdminInfo_route.php
+routes/registerAdmin_route.php
+routes/updateAdmin_route.php
+routes/updateRestaurant_route.php
+
+views/editarAdmin.php
+views/editarRestaurant.php
+views/restaurant.php

@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result) {
         echo "<script>
             alert('Restaurante actualizado correctamente.');
-            window.location.href = '../views/editarAdmin.php?Id_Rest=" . htmlspecialchars($id) . "';
+            window.location.href = '../views/restaurant.php'; // Cambia aquí la redirección
         </script>";
         exit;
     } else {

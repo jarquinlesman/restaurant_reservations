@@ -98,4 +98,28 @@ function updateAdminData($idAdmin, $name, $phone, $email, $password) {
     $stmt->bind_param('ssssi', $name, $phone, $email, $password, $idAdmin);
     return $stmt->execute();
 }
+
+function getAllAdmins($idRest) {
+    global $conexion;
+
+    $stmt = $conexion->prepare("
+        SELECT u.Id_User, u.Name 
+        FROM restaurant_admins AS ra 
+        JOIN users AS u ON ra.Id_User = u.Id_User 
+        WHERE ra.Id_Rest = ?
+    ");
+    $stmt->bind_param('i', $idRest);
+    $stmt->execute();
+    $adminsResult = $stmt->get_result();
+
+    $admins = [];
+    while ($row = $adminsResult->fetch_assoc()) {
+        $admins[] = $row;
+    }
+
+    return $admins;
+}
+
+
 ?>
+

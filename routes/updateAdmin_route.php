@@ -11,7 +11,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Validar los datos
     if (empty($name) || empty($phone) || empty($email) || empty($password) || $idAdmin === null) {
-        echo "<script>alert('Por favor complete todos los campos.'); history.back();</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+            Swal.fire({
+                icon: 'warning',
+                title: 'Campos Incompletos',
+                text: 'Por favor complete todos los campos.',
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
+                history.back();
+            });
+        </script>";
         exit;
     }
 
@@ -20,15 +30,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Redirigir basado en el resultado
     if ($result) {
-        echo "<script>
-            alert('Administrador actualizado correctamente.');
-            window.location.href = '../views/restaurant.php';
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Actualización Exitosa',
+                text: 'Administrador actualizado correctamente.',
+                timer: 3000,
+                timerProgressBar: true
+            }).then(() => {
+                window.location.href = '../views/restaurant.php';
+            });
         </script>";
         exit;
     } else {
-        echo "<script>alert('Hubo un problema al actualizar el administrador.'); history.back();</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un problema al actualizar el administrador.',
+                confirmButtonText: 'Intentar de nuevo'
+            }).then(() => {
+                history.back();
+            });
+        </script>";
     }
 } else {
-    echo "<script>alert('Método no permitido.'); history.back();</script>";
+    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Método No Permitido',
+            text: 'Método no permitido.',
+            confirmButtonText: 'Aceptar'
+        }).then(() => {
+            history.back();
+        });
+    </script>";
 }
 ?>
